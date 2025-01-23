@@ -1,0 +1,285 @@
+The Node.js `fs` module provides a variety of file system operations. Here's a comprehensive list of the most commonly used operations, grouped into categories, along with examples:
+
+---
+
+### **1. Reading Files**
+
+#### **Asynchronous**
+```javascript
+fs.readFile('example.txt', 'utf8', (err, data) => {
+    if (err) throw err;
+    console.log(data);
+});
+```
+
+#### **Synchronous**
+```javascript
+const data = fs.readFileSync('example.txt', 'utf8');
+console.log(data);
+```
+
+---
+
+### **2. Writing Files**
+
+#### **Asynchronous**
+```javascript
+fs.writeFile('example.txt', 'Hello, World!', (err) => {
+    if (err) throw err;
+    console.log('File written successfully!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.writeFileSync('example.txt', 'Hello, World!');
+```
+
+---
+
+### **3. Appending to Files**
+
+#### **Asynchronous**
+```javascript
+fs.appendFile('example.txt', '\nAppending this text!', (err) => {
+    if (err) throw err;
+    console.log('Content appended!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.appendFileSync('example.txt', '\nAppending this text!');
+```
+
+---
+
+### **4. Deleting Files**
+
+#### **Asynchronous**
+```javascript
+fs.unlink('example.txt', (err) => {
+    if (err) throw err;
+    console.log('File deleted!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.unlinkSync('example.txt');
+```
+
+---
+
+### **5. Renaming Files**
+
+#### **Asynchronous**
+```javascript
+fs.rename('oldName.txt', 'newName.txt', (err) => {
+    if (err) throw err;
+    console.log('File renamed!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.renameSync('oldName.txt', 'newName.txt');
+```
+
+---
+
+### **6. Checking File or Directory Existence**
+
+#### **Asynchronous**
+```javascript
+fs.access('example.txt', fs.constants.F_OK, (err) => {
+    console.log(err ? 'File does not exist.' : 'File exists.');
+});
+```
+
+#### **Synchronous**
+```javascript
+try {
+    fs.accessSync('example.txt', fs.constants.F_OK);
+    console.log('File exists.');
+} catch {
+    console.log('File does not exist.');
+}
+```
+
+---
+
+### **7. Creating Directories**
+
+#### **Asynchronous**
+```javascript
+fs.mkdir('newDir', (err) => {
+    if (err) throw err;
+    console.log('Directory created!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.mkdirSync('newDir');
+```
+
+---
+
+### **8. Removing Directories**
+
+#### **Asynchronous**
+```javascript
+fs.rmdir('newDir', (err) => {
+    if (err) throw err;
+    console.log('Directory removed!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.rmdirSync('newDir');
+```
+
+---
+
+### **9. Reading Directory Contents**
+
+#### **Asynchronous**
+```javascript
+fs.readdir('someDir', (err, files) => {
+    if (err) throw err;
+    console.log('Files:', files);
+});
+```
+
+#### **Synchronous**
+```javascript
+const files = fs.readdirSync('someDir');
+console.log('Files:', files);
+```
+
+---
+
+### **10. Watching Files for Changes**
+
+#### **Watch a File**
+```javascript
+fs.watchFile('example.txt', (curr, prev) => {
+    console.log('File changed!');
+});
+```
+
+#### **Watch a Directory**
+```javascript
+fs.watch('someDir', (eventType, filename) => {
+    console.log(`Event type: ${eventType}`);
+    console.log(`Filename: ${filename}`);
+});
+```
+
+---
+
+### **11. Copying Files**
+
+#### **Asynchronous**
+```javascript
+fs.copyFile('source.txt', 'destination.txt', (err) => {
+    if (err) throw err;
+    console.log('File copied!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.copyFileSync('source.txt', 'destination.txt');
+```
+
+---
+
+### **12. File Statistics**
+
+#### **Asynchronous**
+```javascript
+fs.stat('example.txt', (err, stats) => {
+    if (err) throw err;
+    console.log('Stats:', stats);
+});
+```
+
+#### **Synchronous**
+```javascript
+const stats = fs.statSync('example.txt');
+console.log('Stats:', stats);
+```
+
+**Example Output**:
+```json
+{
+    "size": 1024,
+    "mtime": "2025-01-23T12:00:00Z",
+    "isFile": true,
+    "isDirectory": false
+}
+```
+
+---
+
+### **13. Truncating Files**
+
+#### **Asynchronous**
+```javascript
+fs.truncate('example.txt', 10, (err) => {
+    if (err) throw err;
+    console.log('File truncated!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.truncateSync('example.txt', 10);
+```
+
+---
+
+### **14. Changing File Permissions**
+
+#### **Asynchronous**
+```javascript
+fs.chmod('example.txt', 0o755, (err) => {
+    if (err) throw err;
+    console.log('Permissions changed!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.chmodSync('example.txt', 0o755);
+```
+
+---
+
+### **15. Changing File Ownership**
+
+#### **Asynchronous**
+```javascript
+fs.chown('example.txt', 1000, 1000, (err) => {
+    if (err) throw err;
+    console.log('Ownership changed!');
+});
+```
+
+#### **Synchronous**
+```javascript
+fs.chownSync('example.txt', 1000, 1000);
+```
+
+---
+
+### **Summary**
+- **Asynchronous operations** use callbacks and are non-blocking.
+- **Synchronous operations** block the event loop and should be used sparingly.
+- **Error handling** is essential to avoid unexpected crashes.
+- These operations allow developers to interact with the file system in a powerful and flexible way.
+
+Let me know if you need more details or examples for specific use cases!
