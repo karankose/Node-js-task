@@ -3,7 +3,9 @@ const fs = require('fs');
 
 
 const server = http.createServer((req ,res)=>{
-    const userLog = `${Date.now()} : ${req.url}new user \n`;
+    const id = Date.now();
+    const  de = id.toString();
+    const userLog = `${de} : ${req.url}new user \n`;
     
     fs.appendFile("./logging.txt",  userLog ,(err,data)=>{
        
