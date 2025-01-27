@@ -4,9 +4,11 @@ const fs = require('fs');
 
 const server = http.createServer((req ,res)=>{
     const id = Date.now();
-    const  de = id.toString();
-    const userLog = `${de} : ${req.url}new user \n`;
     
+    const userLog = `${id} ${req.url} :${req.method}new user \n`;
+    if(req.url ==="/favicon.ico"){
+        return res.end();
+    }
     fs.appendFile("./logging.txt",  userLog ,(err,data)=>{
        
      console.log(" new user comming to server ")
