@@ -16,12 +16,24 @@ const Myserver = http.createServer((req , res)=>{
     })
     
     switch (req.url) {
-        case "/": res.end("home page")
+        case "/":
+            if (req.method === "GET"){
+                res.end("HOME PAGE");
+            }
             break;
-        case "/about" : res.end("about page")
+        case "/about" : 
+            if(req.method === "GET"){
+                res.end("ABOUT PAGE");
+            }
             break;
-        case "/contact" : res.end("contact page");
+        case "/login" :
+            if (req.method === "GET"){
+                res.end("LOGIN PAGE");
+            }else if(req.method ==="POST"){
+                res.end("sign up");
+            }
             break;
+        
         default:  res.end("404")
             break;
     }
